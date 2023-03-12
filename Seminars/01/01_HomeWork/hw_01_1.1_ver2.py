@@ -18,7 +18,7 @@ number = input_number
 sum = 0
 string = None
 
-while number / 10 > 0:
+while number // 10 > 0:
     residue = number % 10
     number = number // 10
     # print(number, residue)
