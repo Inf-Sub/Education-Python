@@ -24,5 +24,6 @@ while number // 10 > 0:
     # print(number, residue)
     sum += residue
     string = f"{str(residue if number else residue)}{f' + {string}' if string is not None else ''}"
+    # str = str[::-1][3:] инвертируем, потом убираем последние 3 символа (пробелы и плюс)
         
 print(f'Сумма чисел числа {input_number} равна {sum} ({string})')
