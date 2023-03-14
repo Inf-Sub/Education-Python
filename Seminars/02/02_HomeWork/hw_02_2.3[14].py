@@ -26,6 +26,6 @@ while flag:
     if result <= max_number:
         print(result, end=',')
     else:
-        flag =False
+        flag = False
         
     
