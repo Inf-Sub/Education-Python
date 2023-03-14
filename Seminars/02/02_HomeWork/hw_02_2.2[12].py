@@ -16,25 +16,28 @@
 # самостоятельно в сети какая функция стандартной библиотеки вычисляет квадратный корень и как до нее добраться.
 
 
-numbers = input(f'Петя называет сумму и произведение этих чисел через пробел: ').split()
-print(numbers)
+
+numbers = input(f'Петя называет сумму и произведение чисел через пробел: ').split()
+
 numbers = [int(number) for number in numbers]
 S, P = numbers
+
 
 a = 1
 b = -S
 c = P
 
 D = pow(b, 2) - 4 * a * c
+print(f'Discriminant: {D} = {pow(b, 2)} - {4 * a * c}')
 
-if D == 0:
-    x = (-b + pow(D, .5)) / 2 * a 
-    y = (-b - pow(D, .5)) / 2 * a 
+if D >= 0:
+    x = int((-b + pow(D, .5)) / 2 * a)
+    y = int((-b - pow(D, .5)) / 2 * a)
 
-    # print(f'{D} = {pow(b, 2)} - {4 * a * c}')
-    # print(f'{x} = ({-b} + {pow(D, .5)}) / {2 * a} ')
-    # print(f'{y} = ({-b} - {pow(D, .5)}) / {2 * a} ')
+    
+    print(f'{x} = ({-b} + {pow(D, .5)}) / {2 * a} ')
+    print(f'{y} = ({-b} - {pow(D, .5)}) / {2 * a} ')
 
-    print(int(x), int(y))
+    print(f'x = {x}, y = {y}; x+y = {x + y}; x*y = {x * y}')
 else:
     print('корней нет')
