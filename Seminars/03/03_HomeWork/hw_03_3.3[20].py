@@ -31,4 +31,31 @@
 # Подумайте о том какие структуры данных здесь наиболее удобно использовать, чтобы просто проверять в какую группу попадает буква, 
 # а также просто накапливать сумму очков.
 
+word = input('Введите слово для подсчета очков в игре Скрабл:')
+# word = 'ноутбук notebook'
 
+letters = dict(
+    **dict.fromkeys(['A', 'E', 'I', 'O', 'U', 'L', 'N', 'S', 'T', 'R'], 1), 
+    **dict.fromkeys(['А', 'В', 'Е', 'И', 'Н', 'О', 'Р', 'С', 'Т'], 1), 
+    **dict.fromkeys(['D', 'G'], 2),
+    **dict.fromkeys(['Д', 'К', 'Л', 'М', 'П', 'У'], 2),
+    **dict.fromkeys(['B', 'C', 'M', 'P'], 3),
+    **dict.fromkeys(['Б', 'Г', 'Ё', 'Ь', 'Я'], 3),
+    **dict.fromkeys(['F', 'H', 'V', 'W', 'Y'], 4),
+    **dict.fromkeys(['Й', 'Ы'], 4),
+    **dict.fromkeys(['K'], 5),
+    **dict.fromkeys(['Ж', 'З', 'Х', 'Ц', 'Ч'], 5),
+    **dict.fromkeys(['J', 'X'], 8),
+    **dict.fromkeys(['Ш', 'Э', 'Ю'], 8),
+    **dict.fromkeys(['Q', 'Z'], 10),
+    **dict.fromkeys(['Ф', 'Щ', 'Ъ'], 10)
+)
+
+sum_of_points = 0
+for letter in word:
+    try:
+        sum_of_points += letters[letter.upper()]
+    except:
+        continue
+
+print(sum_of_points)
