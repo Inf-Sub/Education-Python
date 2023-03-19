@@ -11,3 +11,15 @@
 # Напишите алгоритм подсчета самостоятельно или воспользуйтесь методами списка.
 
 # ```(*)``` **Усложнение.** При выводе результата на экран воспользуйтесь тернарным оператором.
+
+number = int(input(f'Введите число: '))
+# number = 3
+default_list = [10, 5, 7, 3, 3, 0, 5, 7, 2, 8]
+
+print(default_list.count(number) if number in default_list else -1)
+
+# # print(dir(default_list))
+# if number in default_list:
+#     result = default_list.count(number)
+# else:
+#     result = -1
