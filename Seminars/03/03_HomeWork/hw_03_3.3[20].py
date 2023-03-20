@@ -60,4 +60,6 @@ sum_of_points = 0
 
 # print(sum_of_points)
 
+print(letters)
+
 print(sum(letters[letter.upper()] for letter in word if letter.upper() in letters))

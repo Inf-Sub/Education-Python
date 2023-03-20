@@ -34,3 +34,23 @@ print(f'my_list: {my_list1.sort()}')
 print(f'my_list: {my_list1}')
 
 # print(f'my_list: {my_list2.sorted()}')
+
+
+
+lst = [1,2,3,4,5,6,7,8]
+for el in lst:
+    pass
+for idx in range(len(lst)):
+    print(idx, lst[idx])
+    pass
+# enumerate
+for idx, el in enumerate(lst):
+    print(idx, el)
+
+a, b, c, d, *name = lst
+print(name)
+a, b, c, *center, e, d = lst
+print(center)
+
+a, b, c = range(3)
+print(a, b, c)
