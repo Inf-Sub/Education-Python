@@ -18,6 +18,7 @@ input_str_2 = '3 6 9 12 15 18'
 # input_str_1 = '2 4 6 8 10 10 8 6 4 2'
 # input_str_2 = '3 9 12 15 18'
 
-result_set = set(input_str_1.split()).intersection(set(input_str_2.split()))
+result_set = sorted(set(input_str_1.split()).intersection(set(input_str_2.split())), reverse=True)
+
 
 print(*result_set if len(result_set) > 0 else ['Повторяющихся чисел нет'])
