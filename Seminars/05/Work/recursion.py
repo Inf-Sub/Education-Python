@@ -13,5 +13,5 @@ def rev1(n):
     return f'{rev1(n - 1)} {num}'
 
 print(rev1(995))
-# sys.setrecursionlimit(15000)
+sys.setrecursionlimit(15000)
 print(rev1(10000))
