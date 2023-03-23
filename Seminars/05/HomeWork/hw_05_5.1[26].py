@@ -7,7 +7,7 @@
 #     <function_name>(2,3) -> 8
 #     <function_name>(2,4) -> 16
 
-def multiplication(number, degree):
+def multiplication(number: int, degree: int) -> int:
     if degree == 0:
         return 1
     return multiplication(number, degree - 1) * number
