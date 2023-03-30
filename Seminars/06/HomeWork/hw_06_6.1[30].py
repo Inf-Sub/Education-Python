@@ -42,3 +42,7 @@ input_params = input('Введите 3 числа (Первый элемент �
 first_num, step, el_counts = list(map(int, input_params))
 
 print(arithmetic_progression(first_num, step, el_counts))
+
+
+# for example:
+# a,b,c = (int(el) for el in input("Три числа").split())
