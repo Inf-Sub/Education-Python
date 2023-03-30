@@ -19,15 +19,15 @@
 #     lst1 = [-5, 9, 0, 3, -1, -2, 1, 4, -2, 10, 2, 0, -9, 8, 10, -9, 0, -5, -5, 7]
 #     <function_name>(lst1, 2, 10) -> [(1, 9), (3, 3), (7, 4), (9, 10), (10, 2), (13, 8), (14, 10), (19, 7)]
 
+
 def determine_indexes(work_list: list, range_min: int, range_max: int) -> list:
-    # use Comprehension
-    result_list = [key for key, value in enumerate(work_list) if range_min <= value <= range_max]
-    # use Comprehension + tuple
+    # version 1: use Comprehension
+    # result_list = [key for key, value in enumerate(work_list) if range_min <= value <= range_max]
+
+    # version 2: use Comprehension + tuple
     result_list = [(key, value) for key, value in enumerate(work_list) if range_min <= value <= range_max]
 
-
     return result_list
-
 
 
 lst1 = [-5, 9, 0, 3, -1, -2, 1, 4, -2, 10, 2, 0, -9, 8, 10, -9, 0, -5, -5, 7]
