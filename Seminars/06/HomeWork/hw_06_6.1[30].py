@@ -25,17 +25,20 @@
 
 
 def arithmetic_progression(first: int, diff: int, counts: int) -> list:
-    progress_list = [0] * counts
+    # version 1
+    # progress_list = [0] * counts
+    # for i in range(counts):
+    #     progress_list[i] = first
+    #     first += diff
 
-    for i in range(counts):
-        progress_list[i] = first
-        first += diff
-
+    # version 2 (with Comprehension)
+    progress_list = [first] * counts
+    progress_list = [value + key * diff  for key, value in enumerate(progress_list)]
     return progress_list
 
-input_params = input('Введите 3 числа (Первый элемент прогрессии, Разность (шаг) и Количество элементов): ').split()
-# input_params = '2 3 12'.split()
 
+# input_params = '2 3 12'.split()
+input_params = input('Введите 3 числа (Первый элемент прогрессии, Разность (шаг) и Количество элементов): ').split()
 first_num, step, el_counts = list(map(int, input_params))
 
 print(arithmetic_progression(first_num, step, el_counts))
