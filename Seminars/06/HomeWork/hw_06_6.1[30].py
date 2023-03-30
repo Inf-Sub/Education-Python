@@ -33,10 +33,9 @@ def arithmetic_progression(first: int, diff: int, counts: int) -> list:
 
     return progress_list
 
-# params = input('Введите 3 числа (Первый элемент прогрессии, Разность (шаг) и Количество элементов): ').split()
-params = '2 3 12'.split()
-params = list(map(int, params))
+input_params = input('Введите 3 числа (Первый элемент прогрессии, Разность (шаг) и Количество элементов): ').split()
+# input_params = '2 3 12'.split()
 
-first_num, step, el_counts = params
+first_num, step, el_counts = list(map(int, input_params))
 
 print(arithmetic_progression(first_num, step, el_counts))
