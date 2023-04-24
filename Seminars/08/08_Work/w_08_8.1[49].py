@@ -22,8 +22,8 @@
 # fio = {'Иванов Иван': ['897097','работник'], 'Петров Петр': ['35346', 'не раб']}
 # fio = [{'Иванов Иван': ['897097','работник']}, {'Петров Петр': ['35346', 'не раб']}]
 # fio = [{1: ["Иванов", "Иван","89234145", "работник"]}]
-fio = {1: {'surname': "Иванов", 'name': "Иван", 'number': "89234145", 'discription': "работник"}}
-# fio = [{'surname': "Иванов", 'name': "Иван", 'number': "89234145", 'discription': "работник"}]
+fio = {1: {'surname': "Иванов", 'name': "Иван", 'number': "89234145", 'description': "работник"}}
+# fio = [{'surname': "Иванов", 'name': "Иван", 'number': "89234145", 'description': "работник"}]
 
 
 rn = f'\n'
@@ -35,8 +35,8 @@ phonebook_last_id = 0
 
 
 
-def create(db: dict, id: int, surname: str, name: str, phone: str, discription: str) -> tuple:           #data_base
-    db[id] = {"surname": surname, 'name': name, 'phone': phone, 'discription': discription}
+def create(db: dict, id: int, surname: str, name: str, phone: str, description: str) -> tuple:           #data_base
+    db[id] = {"surname": surname, 'name': name, 'phone': phone, 'description': description}
     id += 1
     return db, id
 
@@ -54,8 +54,8 @@ def get_user_data() -> tuple:
     surname = input("Введите фамилию: ")
     name = input("Введите имя: ")
     phone = input("Введите номер: ")
-    discription = input("Введите описание: ")
-    return surname, name, phone, discription
+    description = input("Введите описание: ")
+    return surname, name, phone, description
 
 
 def get_surname() -> str:
@@ -76,7 +76,7 @@ def print_data(db: dict, db_id: int = None, full: bool = False) -> None:
 
     for _id, data in db.items():
         if (db_id is not None and db_id == _id) or (db_id is None and full == True):
-            print(f"[{_id}: {data['surname']} | {data['name']} | {data['phone']} | {data['discription']}]")
+            print(f"[{_id}: {data['surname']} | {data['name']} | {data['phone']} | {data['description']}]")
         else:
             print(f'Запись не найдена!')
             break
@@ -88,7 +88,7 @@ def print_data(db: dict, db_id: int = None, full: bool = False) -> None:
 def export_db(db: dict, filepath: str, delimeter: str = '#') -> None:
     with open(filepath, "w", encoding='utf-8') as file:
         for _id, data in db.items():
-            file.write(f"{data['surname']}{delimeter}{data['name']}{delimeter}{data['phone']}{delimeter}{data['discription']}\n")
+            file.write(f"{data['surname']}{delimeter}{data['name']}{delimeter}{data['phone']}{delimeter}{data['description']}\n")
 
 
 def get_file_name() -> str:
@@ -99,9 +99,9 @@ def get_file_name() -> str:
 def import_db(db: dict, last_id: int, filepath: str, delimeter: str = '#') -> tuple:
     with open(filepath, "r", encoding='utf-8') as file:
         for line in file:
-            # data['surname']},{data['name']},{data['phone']},{data['discription']}
+            # data['surname']},{data['name']},{data['phone']},{data['description']}
             _data = line.strip().split(delimeter)
-            db[last_id] = {"surname": _data[0], 'name': _data[1], 'phone': _data[2], 'discription': _data[3]}
+            db[last_id] = {"surname": _data[0], 'name': _data[1], 'phone': _data[2], 'description': _data[3]}
             last_id += 1
     return db, last_id
 

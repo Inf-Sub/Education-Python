@@ -2,11 +2,11 @@ from pathlib import Path
 from os import getcwd
 from os.path import join, abspath, dirname
 
-MAIN_DIR_OP1 = abspath(dirname(__file__))
-MAIN_DIR_OP2 = abspath(dirname("."))
-
 MAIN_DIR_PL1 = Path(__file__).parent
 MAIN_DIR_PL2 = Path(".")
+
+MAIN_DIR_OP1 = abspath(dirname(__file__))
+MAIN_DIR_OP2 = abspath(dirname("."))
 
 print(f"текущая директория: {getcwd()}")
 print("PATHLIB")
