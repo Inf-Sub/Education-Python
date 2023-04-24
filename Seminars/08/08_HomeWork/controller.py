@@ -4,6 +4,11 @@ import view
 
 
 def controller(DEBUG: bool = False) -> None:
+    """
+    Program operation controller.
+    :param DEBUG: True | False debug mode
+    :return: None
+    """
     is_change_data = False
 
     db_file = model.get_full_file_path(config.DATABASE)
@@ -28,33 +33,47 @@ def controller(DEBUG: bool = False) -> None:
         match selected:
             # 'Create'
             case "1":
-                user = [{
-                    'last_name': view.get_user_response(messages['enter_last_name']),
-                    'first_name': view.get_user_response(messages['enter_first_name']),
-                    'phone': view.get_user_response(messages['enter_phone']),
-                    'description': view.get_user_response(messages['enter_description']),
-                }]
-                model.add_data_to_db(db, user)
-
-                is_change_data = True
+                new_data = view.get_multiple_responses(
+                    last_name=messages['enter_last_name'], first_name=messages['enter_first_name'],
+                    phone=messages['enter_phone'], description=messages['enter_description']
+                )
+                if new_data['last_name'] or new_data['first_name'] or new_data['phone']:
+                    model.add_data_to_db(db=db, new_data=[new_data])
+                    is_change_data = True
 
             # 'Read'
             case "2":
-                search_user = model.get_search_in_db(db=db, search=view.get_user_response(messages['search_last_name']),
-                                                     where='last_name')
+                search = view.get_user_response(messages['search_last_name'])
+                search_user = model.get_search_in_db(db=db, search=search, where='last_name')
                 view.view_data_from_db(search_user)
 
             # 'Update'
             case "3":
-                'action - 3'
-                is_change_data = True
+                view.view_data_from_db(db)
+                str_number = view.get_user_response(messages['enter_record_number_to_update'])
+                new_data = view.get_multiple_responses(
+                    last_name=messages['enter_last_name'], first_name=messages['enter_first_name'],
+                    phone=messages['enter_phone'], description=messages['enter_description']
+                )
+                update_result = model.update_data_in_db(db=db, str_number=str_number, new_data=new_data)
+                if update_result:
+                    view.send_message(messages['entry_updated'])
+                    is_change_data = True
+                else:
+                    view.send_message(messages['entry_not_updated'])
 
             # 'Delete'
             case "4":
-                model.delete_data_from_db(db=db,
-                                          str_number=view.get_user_response(messages['enter_record_number_to_delete']))
+                view.view_data_from_db(db)
+                str_number = view.get_user_response(messages['enter_record_number_to_delete'])
+                deletion_result = model.delete_data_from_db(db=db, str_number=str_number)
+                if deletion_result:
+                    view.send_message(messages['entry_removed'])
+                    is_change_data = True
+                else:
+                    view.send_message(messages['entry_not_removed'])
 
-                is_change_data = True
+
 
             # 'View DB'
             case "5":
@@ -86,7 +105,7 @@ def controller(DEBUG: bool = False) -> None:
 
             # 'Language'
             case "8":
-                dict_lang = view.change_language()
+                dict_lang = view.get_language()
                 view.view_menu(menu=dict_lang, title=messages['title_menu_language'])
                 selected_lang = view.get_user_response(messages['enter_select_menu'])
                 if selected_lang in dict_lang:
@@ -107,8 +126,6 @@ def controller(DEBUG: bool = False) -> None:
 
             case _:
                 view.send_message(messages['input_incorrect'])
-
-        # print(db)
 
 
 if __name__ == "__main__":
